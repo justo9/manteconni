@@ -116,7 +116,7 @@
     .page-inner { max-width:1100px; margin:0 auto; padding:4rem 3rem; }
 
     .btn-primary {
-      display:inline-block; margin-top:2rem;
+      display:inline-block; margin-top:.8rem;
       padding:.85rem 2rem; border-radius:4px;
       background:linear-gradient(135deg,var(--orange),var(--pink));
       color:#fff; font-weight:700; font-size:.85rem; letter-spacing:2px;
@@ -174,7 +174,8 @@
     /* ===== HISTORIA ===== */
     .historia-section { padding:5rem 3rem; max-width:1100px; margin:0 auto; }
     .historia-grid {
-      display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; margin-top:2rem;
+      display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:start; margin-top:2rem;
+      max-width:700px;
     }
     .historia-text p {
       color:#b8a8d8; line-height:1.9; font-size:1rem;
@@ -357,6 +358,9 @@
 
     /* ===== MOBILE ===== */
     @media (max-width:768px) {
+      .hero-section { min-height:auto; padding:1.5rem 1.5rem 1rem; align-items:flex-start; }
+      .hero-content { gap:.3rem; }
+      .hero-title-img { width:90vw; }
       .historia-grid, .contact-grid { grid-template-columns:1fr; gap:2rem; }
       .miembros-grid { grid-template-columns:1fr 1fr; }
       .page-inner, .historia-section, .gallery-section { padding:3rem 1.5rem; }
@@ -417,7 +421,7 @@
           <div class="miembros-title">Formación</div>
           <div class="miembros-grid">
             <div class="miembro-card">
-              <div class="miembro-foto"><span class="foto-hint">Foto</span></div>
+              <div class="miembro-foto"><img src="dani.jpg" alt="Dani Cortés" /></div>
               <div class="nombre">Dani Cortés</div>
               <div class="instrumento">Guitarra eléctrica</div>
             </div>
@@ -437,7 +441,7 @@
               <div class="instrumento">Teclado</div>
             </div>
             <div class="miembro-card" style="grid-column:span 2;">
-              <div class="miembro-foto" style="aspect-ratio:2/1;"><span class="foto-hint">Foto</span></div>
+              <div class="miembro-foto" style="aspect-ratio:2/1;"><img src="juanillo.jpg" alt="Juanillo Morales" /></div>
               <div class="nombre">Juanillo Morales</div>
               <div class="instrumento">Batería</div>
             </div>
