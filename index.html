@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MANTECONNI – Jazz Fusion Funk Rock</title>
   <meta name="description" content="Manteconni, banda de Jazz Fusion Funk Rock de Jaén. Pablo Cortés, Dani Cortés, David Zafra, Juanillo Morales y Justo González." />
-  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="icon" type="image/png" href="favicon.png" sizes="48x48" />
   <link rel="apple-touch-icon" href="logo.png" />
   <meta property="og:image" content="logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -361,6 +361,72 @@
     .contact-link:hover .contact-icon { border-color:var(--orange); color:var(--orange); }
     .contact-icon svg { width:18px; height:18px; fill:currentColor; }
 
+    /* ===== CHATBOT ===== */
+    #chat-widget {
+      position:fixed; bottom:1.5rem; left:1.5rem; z-index:999;
+      font-family:'Nunito',sans-serif;
+    }
+    #chat-toggle {
+      width:54px; height:54px; border-radius:50%;
+      background:var(--orange); border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 18px rgba(234,61,19,.45);
+      transition:transform .2s, box-shadow .2s;
+    }
+    #chat-toggle:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(234,61,19,.6); }
+    #chat-toggle svg { width:26px; height:26px; fill:#fff; }
+    #chat-box {
+      display:none; flex-direction:column;
+      width:290px; border-radius:14px; overflow:hidden;
+      background:#1e0f38; border:1px solid rgba(234,61,19,.35);
+      box-shadow:0 8px 32px rgba(0,0,0,.6);
+      margin-bottom:.75rem;
+    }
+    #chat-box.open { display:flex; }
+    .chat-head {
+      background:var(--orange); padding:.8rem 1rem;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .chat-head-title {
+      font-family:'Righteous',cursive; color:#fff;
+      font-size:1rem; letter-spacing:1px;
+    }
+    .chat-head-sub { font-size:.7rem; color:rgba(255,255,255,.8); margin-top:.1rem; }
+    #chat-close {
+      background:none; border:none; cursor:pointer;
+      color:#fff; font-size:1.3rem; line-height:1; padding:0 .2rem;
+      opacity:.8;
+    }
+    #chat-close:hover { opacity:1; }
+    .chat-messages {
+      padding:.9rem 1rem; display:flex; flex-direction:column; gap:.6rem;
+      min-height:80px;
+    }
+    .chat-msg {
+      background:rgba(255,255,255,.06); border-radius:10px;
+      padding:.6rem .8rem; font-size:.83rem; color:#c8b8e8; line-height:1.5;
+      max-width:90%; align-self:flex-start;
+    }
+    .chat-form { padding:.5rem 1rem 1rem; display:flex; flex-direction:column; gap:.6rem; }
+    .chat-input {
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+      border-radius:8px; padding:.55rem .75rem;
+      color:var(--cream); font-family:'Nunito',sans-serif; font-size:.85rem;
+      outline:none; resize:none; transition:border-color .2s;
+    }
+    .chat-input:focus { border-color:var(--orange); }
+    .chat-input::placeholder { color:#5a4a7a; }
+    #chat-send {
+      background:var(--orange); color:#fff; border:none; border-radius:8px;
+      padding:.55rem; font-family:'Righteous',cursive; font-size:.85rem;
+      letter-spacing:1px; cursor:pointer; transition:background .2s;
+    }
+    #chat-send:hover { background:#c4320e; }
+    .chat-sent-msg {
+      padding:.7rem 1rem 1rem; font-size:.82rem; color:var(--teal);
+      text-align:center; line-height:1.5; display:none;
+    }
+
     /* ===== MOBILE ===== */
     @media (max-width:768px) {
       .hero-section { min-height:auto; padding:1.5rem 1.5rem 1rem; align-items:flex-start; }
@@ -663,4 +729,62 @@
     e.preventDefault();
     goToPage(el.dataset.page);
   });
+</script>
+
+<!-- ===== CHATBOT WIDGET ===== -->
+<div id="chat-widget">
+  <div id="chat-box">
+    <div class="chat-head">
+      <div>
+        <div class="chat-head-title">Manteconni</div>
+        <div class="chat-head-sub">Escríbenos un mensaje</div>
+      </div>
+      <button id="chat-close" aria-label="Cerrar">&#x2715;</button>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-msg">¡Hola! ¿En qué podemos ayudarte? Escribe tu nombre y mensaje y te responderemos.</div>
+    </div>
+    <div class="chat-form">
+      <input class="chat-input" id="chat-name" type="text" placeholder="Tu nombre" maxlength="60" />
+      <textarea class="chat-input" id="chat-msg" rows="3" placeholder="Tu mensaje..." maxlength="500"></textarea>
+      <button id="chat-send">Enviar</button>
+    </div>
+    <div class="chat-sent-msg" id="chat-sent">
+      ¡Mensaje listo! Se abrirá tu cliente de correo con el texto preparado.
+    </div>
+  </div>
+  <button id="chat-toggle" aria-label="Contactar con Manteconni">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
+  </button>
+</div>
+
+<script>
+  (function(){
+    const toggle = document.getElementById('chat-toggle');
+    const box    = document.getElementById('chat-box');
+    const close  = document.getElementById('chat-close');
+    const send   = document.getElementById('chat-send');
+    const form   = document.querySelector('.chat-form');
+    const sent   = document.getElementById('chat-sent');
+
+    toggle.addEventListener('click', () => box.classList.toggle('open'));
+    close.addEventListener('click',  () => box.classList.remove('open'));
+
+    send.addEventListener('click', () => {
+      const name = document.getElementById('chat-name').value.trim();
+      const msg  = document.getElementById('chat-msg').value.trim();
+      if (!msg) { document.getElementById('chat-msg').focus(); return; }
+      const subject = encodeURIComponent('Mensaje desde la web' + (name ? ' · ' + name : ''));
+      const body    = encodeURIComponent((name ? 'Nombre: ' + name + '\n\n' : '') + msg);
+      window.location.href = 'mailto:manteconni@gmail.com?subject=' + subject + '&body=' + body;
+      form.style.display = 'none';
+      sent.style.display = 'block';
+      setTimeout(() => {
+        form.style.display = '';
+        sent.style.display = 'none';
+        document.getElementById('chat-name').value = '';
+        document.getElementById('chat-msg').value  = '';
+      }, 4000);
+    });
+  })();
 </script>
