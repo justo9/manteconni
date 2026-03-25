@@ -486,14 +486,14 @@
     #spotify-toggle:hover { transform:scale(1.08); box-shadow:0 6px 24px rgba(29,185,84,.6); }
     #spotify-toggle svg { width:26px; height:26px; fill:#fff; }
     #spotify-mini {
-      display:none; width:300px;
+      display:block; width:300px;
       border-radius:12px; overflow:hidden;
       margin-bottom:.75rem;
       box-shadow:0 8px 32px rgba(0,0,0,.6);
       border:1px solid rgba(29,185,84,.25);
     }
-    #spotify-mini.open { display:block; }
-    #spotify-mini iframe { display:block; width:300px; height:80px; border:none; }
+    #spotify-mini.hidden { display:none; }
+    #spotify-mini iframe { display:block; width:300px; height:152px; border:none; }
 
     /* ===== MOBILE ===== */
     @media (max-width:768px) {
@@ -876,7 +876,7 @@
 <script>
   (function(){
     document.getElementById('spotify-toggle').addEventListener('click', function(){
-      document.getElementById('spotify-mini').classList.toggle('open');
+      document.getElementById('spotify-mini').classList.toggle('hidden');
     });
   })();
 </script>
