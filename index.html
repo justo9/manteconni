@@ -339,6 +339,29 @@
     }
     .btn-reserva:hover { background:var(--orange); color:#fff; }
 
+    /* ===== COMPARTIR ===== */
+    .share-row { display:flex; gap:.5rem; align-items:center; margin-top:1rem; flex-wrap:wrap; }
+    .share-label { font-size:.68rem; letter-spacing:2px; text-transform:uppercase; color:#5a4a7a; margin-right:.2rem; }
+    .btn-share {
+      width:34px; height:34px; border-radius:50%; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:transform .2s; flex-shrink:0; padding:0; text-decoration:none;
+    }
+    .btn-share:hover { transform:scale(1.15); }
+    .btn-share svg { width:17px; height:17px; fill:#fff; display:block; }
+    .btn-share-wa   { background:#25D366; }
+    .btn-share-ig   { background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+    .btn-share-x    { background:#000; border:1px solid rgba(255,255,255,.18); }
+    .btn-share-more { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); }
+    .share-toast {
+      position:fixed; bottom:5.5rem; left:50%; transform:translateX(-50%);
+      background:var(--teal); color:var(--dark);
+      padding:.55rem 1.5rem; border-radius:20px;
+      font-size:.82rem; font-weight:700; letter-spacing:1px;
+      opacity:0; transition:opacity .3s; pointer-events:none; z-index:10000; white-space:nowrap;
+    }
+    .share-toast.show { opacity:1; }
+
     /* ===== MERCH ===== */
     .merch-grid {
       display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.5rem;
@@ -622,6 +645,21 @@
           <a href="https://wa.me/34654036827" target="_blank" class="btn-reserva">WhatsApp · 654 036 827</a>
           <a href="mailto:reservas@jaenjazzy.com" class="btn-reserva">reservas@jaenjazzy.com</a>
         </div>
+        <div class="share-row" data-event="jaenjazzy">
+          <span class="share-label">Compartir</span>
+          <button class="btn-share btn-share-wa" title="Compartir por WhatsApp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-12.42A11.94 11.94 0 0 0 .573 17.58L0 24l6.59-.572A11.928 11.928 0 0 0 12.051 24C18.627 24 24 18.627 24 12.051 24 5.42 18.627.003 12.051.003z"/></svg>
+          </button>
+          <button class="btn-share btn-share-ig" title="Compartir en Instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </button>
+          <button class="btn-share btn-share-x" title="Compartir en X (Twitter)" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.834L1.254 2.25H8.08l4.254 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </button>
+          <button class="btn-share btn-share-more" title="Mas opciones para compartir" aria-label="Compartir">
+            <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+          </button>
+        </div>
       </div>
     </div>
     <div class="concierto-card">
@@ -633,6 +671,21 @@
         <h3>Festival de Otoño</h3>
         <div class="lugar">Jaén</div>
         <div class="hora">Domingo · 12:00</div>
+        <div class="share-row" data-event="festivalotono">
+          <span class="share-label">Compartir</span>
+          <button class="btn-share btn-share-wa" title="Compartir por WhatsApp" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-12.42A11.94 11.94 0 0 0 .573 17.58L0 24l6.59-.572A11.928 11.928 0 0 0 12.051 24C18.627 24 24 18.627 24 12.051 24 5.42 18.627.003 12.051.003z"/></svg>
+          </button>
+          <button class="btn-share btn-share-ig" title="Compartir en Instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </button>
+          <button class="btn-share btn-share-x" title="Compartir en X (Twitter)" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.834L1.254 2.25H8.08l4.254 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </button>
+          <button class="btn-share btn-share-more" title="Mas opciones para compartir" aria-label="Compartir">
+            <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -777,6 +830,66 @@
       }, 4000);
     });
   })();
+</script>
+
+<!-- ===== SHARE TOAST ===== -->
+<div id="share-toast" class="share-toast"></div>
+
+<!-- ===== SHARE LOGIC ===== -->
+<script>
+(function () {
+  const SITE_URL = 'https://manteconni.es';
+  const EVENTS = {
+    jaenjazzy: {
+      title: 'Jaen Jazzy \u00b7 MANTECONNI',
+      text: '\ud83c\udfb5 MANTECONNI en Jaen Jazzy\n\ud83d\udcc5 Viernes, 24 Abr 2026\n\ud83d\udccd Poligono Industrial Los Olivares, Calle Alcaudete \u00b7 Jaen\n\u23f0 Puertas 20:00 \u00b7 Concierto 20:30\n\ud83d\udd17 ' + SITE_URL,
+      url: SITE_URL
+    },
+    festivalotono: {
+      title: 'Festival de Otono \u00b7 MANTECONNI',
+      text: '\ud83c\udfb5 MANTECONNI en el Festival de Otono\n\ud83d\udcc5 Domingo, 6 Dic 2026\n\ud83d\udccd Jaen\n\u23f0 12:00\n\ud83d\udd17 ' + SITE_URL,
+      url: SITE_URL
+    }
+  };
+
+  function showToast(msg) {
+    var t = document.getElementById('share-toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); }, 2800);
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.btn-share');
+    if (!btn) return;
+    e.preventDefault();
+    var row = btn.closest('.share-row');
+    var ev = row && EVENTS[row.dataset.event];
+    if (!ev) return;
+
+    if (btn.classList.contains('btn-share-wa')) {
+      window.open('https://wa.me/?text=' + encodeURIComponent(ev.text), '_blank');
+    } else if (btn.classList.contains('btn-share-ig')) {
+      navigator.clipboard.writeText(ev.text).then(function () {
+        showToast('\u00a1Copiado! Abre Instagram y pegalo');
+      }).catch(function () {
+        showToast('\u00a1Copia este enlace: ' + SITE_URL);
+      });
+    } else if (btn.classList.contains('btn-share-x')) {
+      window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(ev.text), '_blank');
+    } else if (btn.classList.contains('btn-share-more')) {
+      if (navigator.share) {
+        navigator.share({ title: ev.title, text: ev.text, url: ev.url }).catch(function () {});
+      } else {
+        navigator.clipboard.writeText(ev.url).then(function () {
+          showToast('\u00a1Enlace copiado al portapapeles!');
+        }).catch(function () {
+          showToast('\u00a1Copia este enlace: ' + SITE_URL);
+        });
+      }
+    }
+  });
+})();
 </script>
 
 <!-- ===== SPOTIFY WIDGET ===== -->
